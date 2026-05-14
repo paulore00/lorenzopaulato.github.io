@@ -1,0 +1,693 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lorenzo Paulato — Helping Through Shape</title>
+  <meta name="description" content="Portfolio of Lorenzo Paulato, Product Designer. Helping Through Shape.">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    /* ═══════════════════════════════
+       HERO
+    ═══════════════════════════════ */
+    #hero {
+      height: 100vh;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero-left {
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 0 48px 80px;
+      position: relative;
+      z-index: 2;
+    }
+    .hero-number {
+      font-family: var(--font-display);
+      font-size: clamp(120px, 20vw, 220px);
+      font-weight: 900;
+      line-height: .85;
+      color: rgba(255,255,255,.04);
+      position: absolute;
+      top: 50%; left: 0;
+      transform: translateY(-50%);
+      pointer-events: none;
+      letter-spacing: -.02em;
+      user-select: none;
+    }
+    .hero-tagline {
+      font-family: var(--font-display);
+      font-size: clamp(42px, 6vw, 72px);
+      font-weight: 700;
+      line-height: 1;
+      letter-spacing: -.01em;
+      text-transform: uppercase;
+      margin-bottom: 24px;
+      animation: fadeUp .8s var(--ease) .3s both;
+    }
+    .hero-tagline span { color: var(--red); }
+    .hero-sub {
+      font-size: 13px;
+      font-weight: 300;
+      color: rgba(255,255,255,.45);
+      letter-spacing: .06em;
+      text-transform: uppercase;
+      animation: fadeUp .8s var(--ease) .5s both;
+    }
+    .hero-line-red {
+      position: absolute;
+      bottom: 0; left: 48px;
+      width: 1px;
+      height: 40%;
+      background: var(--red);
+      transform-origin: bottom;
+      animation: lineGrow 1s var(--ease) .2s both;
+    }
+    @keyframes lineGrow {
+      from { transform: scaleY(0); }
+      to   { transform: scaleY(1); }
+    }
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(16px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    .hero-right {
+      position: relative;
+      overflow: hidden;
+    }
+    .hero-right img {
+      position: absolute;
+      inset: 0;
+      width: 100%; height: 100%;
+      object-fit: cover;
+      object-position: center;
+      opacity: .18;
+      filter: grayscale(1);
+      animation: imgReveal 1.2s var(--ease) both;
+    }
+    @keyframes imgReveal {
+      from { opacity: 0; transform: scale(1.04); }
+      to   { opacity: .18; transform: scale(1); }
+    }
+    .hero-scroll {
+      position: absolute;
+      bottom: 40px; right: 48px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+      animation: fadeUp .8s var(--ease) .9s both;
+    }
+    .hero-scroll span {
+      font-family: var(--font-display);
+      font-size: 10px;
+      letter-spacing: .2em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,.25);
+      writing-mode: vertical-rl;
+    }
+    .scroll-line {
+      width: 1px;
+      height: 48px;
+      background: linear-gradient(to bottom, var(--red), transparent);
+      animation: scrollPulse 2s ease-in-out infinite;
+    }
+    @keyframes scrollPulse {
+      0%,100% { opacity: .3; transform: scaleY(1); }
+      50%      { opacity: 1; transform: scaleY(1.2); }
+    }
+    .hero-border-bottom {
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 1px;
+      background: rgba(255,255,255,.06);
+    }
+
+    /* ═══════════════════════════════
+       PROJECTS GRID
+    ═══════════════════════════════ */
+    #projects {
+      background: var(--white);
+      padding: 120px 48px 80px;
+    }
+    .section-label {
+      font-family: var(--font-display);
+      font-size: 11px;
+      font-weight: 400;
+      letter-spacing: .22em;
+      text-transform: uppercase;
+      color: var(--red);
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 64px;
+    }
+    .section-label::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: rgba(0,0,0,.1);
+    }
+    .projects-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2px;
+    }
+    .project-card {
+      position: relative;
+      aspect-ratio: 16/10;
+      overflow: hidden;
+      background: var(--black);
+      cursor: none;
+      text-decoration: none;
+      display: block;
+    }
+    .project-card::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: var(--black);
+      z-index: 1;
+      opacity: 1;
+      transition: opacity .6s var(--ease);
+    }
+    .project-card:hover::before { opacity: 0; }
+    .card-wireframe {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      padding: 32px;
+      z-index: 2;
+      transition: opacity .5s var(--ease), transform .6s var(--ease);
+    }
+    .card-wireframe img {
+      max-height: 75%;
+      max-width: 55%;
+      object-fit: contain;
+      filter: invert(1);
+      opacity: .7;
+    }
+    .project-card:hover .card-wireframe {
+      opacity: 0;
+      transform: scale(1.05);
+    }
+    .card-photo {
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+      overflow: hidden;
+    }
+    .card-photo img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      transition: transform .7s var(--ease);
+      filter: grayscale(.3);
+      opacity: .7;
+    }
+    .project-card:hover .card-photo img { transform: scale(1.04); }
+    .card-info {
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      padding: 28px 32px;
+      z-index: 3;
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+    }
+    .card-number {
+      font-family: var(--font-display);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: .18em;
+      color: var(--red);
+      display: block;
+      margin-bottom: 4px;
+    }
+    .card-title {
+      font-family: var(--font-display);
+      font-size: clamp(22px, 3vw, 36px);
+      font-weight: 900;
+      text-transform: uppercase;
+      color: var(--white);
+      letter-spacing: -.01em;
+      line-height: 1;
+    }
+    .card-sub {
+      font-family: var(--font-body);
+      font-size: 12px;
+      font-weight: 300;
+      color: rgba(255,255,255,.45);
+      margin-top: 4px;
+    }
+    .card-arrow {
+      width: 40px; height: 40px;
+      border: 1px solid rgba(255,255,255,.2);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--white);
+      transform: rotate(-45deg);
+      transition: all .3s var(--ease);
+      flex-shrink: 0;
+    }
+    .project-card:hover .card-arrow {
+      background: var(--red);
+      border-color: var(--red);
+      transform: rotate(0deg);
+    }
+    .card-line {
+      position: absolute;
+      bottom: 0; left: 0;
+      width: 0;
+      height: 2px;
+      background: var(--red);
+      transition: width .5s var(--ease);
+      z-index: 4;
+    }
+    .project-card:hover .card-line { width: 100%; }
+
+    /* Project 1: black bg */
+    .card-bg-black { background: var(--black); }
+    /* Project 2: white bg */
+    .card-bg-white { background: var(--white); }
+    .card-bg-white .card-wireframe img { filter: none; opacity: .65; }
+    .card-bg-white .card-title { color: var(--black); }
+    .card-bg-white .card-sub   { color: rgba(0,0,0,.45); }
+    .card-bg-white .card-arrow { border-color: rgba(0,0,0,.2); color: var(--black); }
+    .card-bg-white:hover .card-arrow { background: var(--red); border-color: var(--red); color: var(--white); }
+    /* Project 3: red bg */
+    .card-bg-red { background: var(--red); }
+    .card-bg-red .card-wireframe img { filter: none; opacity: .3; }
+    /* Project 4: black bg */
+
+    /* ═══════════════════════════════
+       ABOUT
+    ═══════════════════════════════ */
+    #about {
+      background: var(--red);
+      padding: 120px 48px;
+      position: relative;
+      overflow: hidden;
+    }
+    .about-decoration {
+      position: absolute;
+      top: -60px; right: -60px;
+      width: 320px; height: 320px;
+      border-radius: 50%;
+      border: 1px solid rgba(255,255,255,.12);
+      pointer-events: none;
+    }
+    .about-decoration-2 {
+      position: absolute;
+      bottom: -100px; left: 20%;
+      width: 200px; height: 200px;
+      border-radius: 50%;
+      border: 1px solid rgba(255,255,255,.08);
+      pointer-events: none;
+    }
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 80px;
+      position: relative;
+      z-index: 2;
+    }
+    .about-heading {
+      font-family: var(--font-display);
+      font-size: clamp(48px, 7vw, 88px);
+      font-weight: 900;
+      text-transform: uppercase;
+      line-height: .9;
+      color: var(--white);
+      letter-spacing: -.02em;
+      grid-column: 1 / -1;
+      margin-bottom: 24px;
+    }
+    .about-bio {
+      font-size: 15px;
+      line-height: 1.7;
+      color: rgba(255,255,255,.8);
+      font-weight: 300;
+    }
+    .about-col-title {
+      font-family: var(--font-display);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: .2em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,.4);
+      margin-bottom: 24px;
+    }
+    .skills-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .skills-list li {
+      font-family: var(--font-display);
+      font-size: 16px;
+      font-weight: 400;
+      letter-spacing: .04em;
+      text-transform: uppercase;
+      color: var(--white);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .skills-list li::before {
+      content: '';
+      width: 20px; height: 1px;
+      background: rgba(255,255,255,.4);
+      flex-shrink: 0;
+    }
+    .edu-item {
+      margin-bottom: 24px;
+    }
+    .edu-item:last-child { margin-bottom: 0; }
+    .edu-school {
+      font-family: var(--font-display);
+      font-size: 15px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: .04em;
+      color: var(--white);
+    }
+    .edu-degree {
+      font-size: 13px;
+      color: rgba(255,255,255,.6);
+      margin-top: 2px;
+    }
+    .edu-year {
+      font-family: var(--font-display);
+      font-size: 11px;
+      letter-spacing: .1em;
+      color: rgba(255,255,255,.35);
+      margin-top: 2px;
+    }
+    .about-contact {
+      grid-column: 1 / -1;
+      border-top: 1px solid rgba(255,255,255,.15);
+      padding-top: 40px;
+      display: flex;
+      align-items: center;
+      gap: 48px;
+    }
+    .contact-link {
+      font-family: var(--font-display);
+      font-size: 13px;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,.5);
+      text-decoration: none;
+      transition: color .2s;
+    }
+    .contact-link:hover { color: var(--white); }
+    .contact-email {
+      font-family: var(--font-display);
+      font-size: clamp(16px, 2.5vw, 28px);
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: .04em;
+      color: var(--white);
+      text-decoration: none;
+      transition: opacity .2s;
+    }
+    .contact-email:hover { opacity: .7; }
+
+    /* ── Responsive ── */
+    @media (max-width: 900px) {
+      nav { padding: 20px 24px; }
+      .nav-links { display: none; }
+      #hero { grid-template-columns: 1fr; }
+      .hero-right { display: none; }
+      .hero-left { padding: 0 24px 64px; }
+      #projects { padding: 80px 24px 40px; }
+      .projects-grid { grid-template-columns: 1fr; }
+      .project-card { aspect-ratio: 4/3; }
+      #about { padding: 80px 24px; }
+      .about-grid { grid-template-columns: 1fr; gap: 40px; }
+      footer { padding: 32px 24px; flex-direction: column; gap: 12px; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="cursor" id="cursor"></div>
+  <div class="cursor-ring" id="cursorRing"></div>
+
+  <!-- NAV -->
+  <nav>
+    <a class="nav-logo" href="index.html">LP</a>
+    <div class="nav-right">
+      <ul class="nav-links">
+        <li><a href="#projects" data-en="Work" data-it="Lavori">Work</a></li>
+        <li><a href="#about" data-en="About" data-it="Info">About</a></li>
+        <li><a href="mailto:paulato.lorenzo@gmail.com" data-en="Contact" data-it="Contatti">Contact</a></li>
+      </ul>
+      <div class="lang-toggle">
+        <button class="lang-btn active" onclick="setLang('en')">EN</button>
+        <button class="lang-btn" onclick="setLang('it')">IT</button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section id="hero">
+    <div class="hero-left page-enter">
+      <div class="hero-number" aria-hidden="true">HTS</div>
+      <div class="hero-line-red"></div>
+      <h1 class="hero-tagline">
+        <span data-en="Helping" data-it="Aiutare">Helping</span><br>
+        Through<br>
+        <span data-en="Shape" data-it="la Forma">Shape</span>
+      </h1>
+      <p class="hero-sub">
+        <span data-en="Lorenzo Paulato — Product Designer" data-it="Lorenzo Paulato — Product Designer">Lorenzo Paulato — Product Designer</span>
+      </p>
+    </div>
+    <div class="hero-right">
+      <img src="assets/images/1.jpeg" alt="" aria-hidden="true">
+    </div>
+    <div class="hero-scroll">
+      <div class="scroll-line"></div>
+      <span data-en="scroll" data-it="scorri">scroll</span>
+    </div>
+    <div class="hero-border-bottom"></div>
+  </section>
+
+  <!-- PROJECTS -->
+  <section id="projects">
+    <p class="section-label" data-en="Selected Work — 2024/2026" data-it="Lavori Selezionati — 2024/2026">Selected Work — 2024/2026</p>
+    <div class="projects-grid">
+
+      <!-- 01 Nisus -->
+      <a href="projects/nisus.html" class="project-card card-bg-black">
+        <div class="card-photo">
+          <img src="assets/images/8.jpeg" alt="Nisus lamp prototype">
+        </div>
+        <div class="card-wireframe">
+          <img src="assets/images/4.jpeg" alt="Nisus wireframe">
+        </div>
+        <div class="card-info">
+          <div>
+            <span class="card-number">01</span>
+            <div class="card-title">Nisus</div>
+            <div class="card-sub" data-en="Not just a lamp" data-it="Non solo una lampada">Not just a lamp</div>
+          </div>
+          <div class="card-arrow">
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+              <path d="M2 12L12 2M12 2H4M12 2V10" stroke="currentColor" stroke-width="1.5"/>
+            </svg>
+          </div>
+        </div>
+        <div class="card-line"></div>
+      </a>
+
+      <!-- 02 Monolith -->
+      <a href="projects/monolith.html" class="project-card card-bg-white">
+        <div class="card-photo">
+          <img src="assets/images/13.jpeg" alt="Monolith speaker">
+        </div>
+        <div class="card-wireframe">
+          <img src="assets/images/9.jpeg" alt="Monolith wireframe">
+        </div>
+        <div class="card-info">
+          <div>
+            <span class="card-number" style="color:var(--red)">02</span>
+            <div class="card-title">Monolith</div>
+            <div class="card-sub" data-en="Speaker" data-it="Speaker">Speaker</div>
+          </div>
+          <div class="card-arrow">
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+              <path d="M2 12L12 2M12 2H4M12 2V10" stroke="currentColor" stroke-width="1.5"/>
+            </svg>
+          </div>
+        </div>
+        <div class="card-line"></div>
+      </a>
+
+      <!-- 03 Blooming Wire -->
+      <a href="projects/blooming-wire.html" class="project-card card-bg-red">
+        <div class="card-photo">
+          <img src="assets/images/17.jpeg" alt="Blooming Wire flower holder">
+        </div>
+        <div class="card-wireframe">
+          <img src="assets/images/15.jpeg" alt="Blooming Wire wireframe">
+        </div>
+        <div class="card-info">
+          <div>
+            <span class="card-number" style="color:rgba(255,255,255,.5)">03</span>
+            <div class="card-title">Blooming Wire</div>
+            <div class="card-sub" data-en="Flower holder — Competition Winner" data-it="Portafiori — Vincitore di Competizione">Flower holder — Competition Winner</div>
+          </div>
+          <div class="card-arrow" style="border-color:rgba(255,255,255,.3)">
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+              <path d="M2 12L12 2M12 2H4M12 2V10" stroke="currentColor" stroke-width="1.5"/>
+            </svg>
+          </div>
+        </div>
+        <div class="card-line" style="background:var(--white)"></div>
+      </a>
+
+      <!-- 04 Trust Me -->
+      <a href="projects/trust-me.html" class="project-card card-bg-black">
+        <div class="card-photo">
+          <img src="assets/images/22.jpeg" alt="Trust Me speculative design">
+        </div>
+        <div class="card-wireframe">
+          <img src="assets/images/21.jpeg" alt="Trust Me wireframe">
+        </div>
+        <div class="card-info">
+          <div>
+            <span class="card-number">04</span>
+            <div class="card-title">Trust Me</div>
+            <div class="card-sub" data-en="Speculative Design" data-it="Design Speculativo">Speculative Design</div>
+          </div>
+          <div class="card-arrow">
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+              <path d="M2 12L12 2M12 2H4M12 2V10" stroke="currentColor" stroke-width="1.5"/>
+            </svg>
+          </div>
+        </div>
+        <div class="card-line"></div>
+      </a>
+
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about">
+    <div class="about-decoration"></div>
+    <div class="about-decoration-2"></div>
+    <div class="about-grid">
+      <h2 class="about-heading" data-en="Lorenzo<br>Paulato" data-it="Lorenzo<br>Paulato">Lorenzo<br>Paulato</h2>
+
+      <!-- Bio -->
+      <div>
+        <p class="about-col-title" data-en="About" data-it="Chi sono">About</p>
+        <p class="about-bio" data-en="An aspiring designer with an eye for minimalism. My work always aims to solve problems and needs. My experience in the automation and mechanical industries has made me particularly attentive to the needs of manufacturing. Passionate about 3D modeling and a firm believer in teamwork." data-it="Designer con occhio per il minimalismo. Il mio lavoro mira sempre a risolvere problemi e bisogni. La mia esperienza nell'industria dell'automazione mi ha reso attento alle necessità produttive. Appassionato di modellazione 3D e convinto sostenitore del lavoro di squadra.">
+          An aspiring designer with an eye for minimalism. My work always aims to solve problems and needs. My experience in the automation and mechanical industries has made me particularly attentive to the needs of manufacturing. Passionate about 3D modeling and a firm believer in teamwork.
+        </p>
+      </div>
+
+      <!-- Skills -->
+      <div>
+        <p class="about-col-title" data-en="Tools" data-it="Strumenti">Tools</p>
+        <ul class="skills-list">
+          <li>Rhinoceros</li>
+          <li>SolidWorks</li>
+          <li>Blender</li>
+          <li>Fusion 360</li>
+          <li>Adobe Suite</li>
+          <li>Figma</li>
+        </ul>
+      </div>
+
+      <!-- Education -->
+      <div>
+        <p class="about-col-title" data-en="Education" data-it="Formazione">Education</p>
+        <div class="edu-item">
+          <div class="edu-school">Politecnico di Torino</div>
+          <div class="edu-degree" data-en="Product Design" data-it="Product Design">Product Design</div>
+          <div class="edu-year">2023 — Today</div>
+        </div>
+        <div class="edu-item">
+          <div class="edu-school">ELISAVA</div>
+          <div class="edu-degree" data-en="Product Design — Exchange" data-it="Product Design — Scambio">Product Design — Exchange</div>
+          <div class="edu-year">Sep 2025 — Feb 2026</div>
+        </div>
+        <div class="edu-item">
+          <div class="edu-school">ITS JobsAcademy</div>
+          <div class="edu-degree" data-en="Mechatronic & Industry 4.0" data-it="Meccatronica & Industry 4.0">Mechatronic & Industry 4.0</div>
+          <div class="edu-year">2019 — 2021</div>
+        </div>
+      </div>
+
+      <!-- Contact -->
+      <div class="about-contact">
+        <a class="contact-email" href="mailto:paulato.lorenzo@gmail.com">paulato.lorenzo@gmail.com</a>
+        <a class="contact-link" href="https://github.com/lorenzopaulato" target="_blank" rel="noopener">GitHub</a>
+        <a class="contact-link" href="https://linkedin.com/in/lorenzopaulato" target="_blank" rel="noopener">LinkedIn</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <p>© 2026 Lorenzo Paulato</p>
+    <p data-en="Helping Through Shape" data-it="Aiutare attraverso la Forma">Helping Through Shape</p>
+    <a href="mailto:paulato.lorenzo@gmail.com">paulato.lorenzo@gmail.com</a>
+  </footer>
+
+  <script>
+    // ── Cursor ──
+    const cur = document.getElementById('cursor');
+    const ring = document.getElementById('cursorRing');
+    let mx = 0, my = 0, rx = 0, ry = 0;
+    document.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; });
+    function animCursor() {
+      cur.style.left = mx + 'px'; cur.style.top = my + 'px';
+      rx += (mx - rx) * .12; ry += (my - ry) * .12;
+      ring.style.left = rx + 'px'; ring.style.top = ry + 'px';
+      requestAnimationFrame(animCursor);
+    }
+    animCursor();
+    document.querySelectorAll('a, button').forEach(el => {
+      el.addEventListener('mouseenter', () => { cur.style.width = '20px'; cur.style.height = '20px'; });
+      el.addEventListener('mouseleave', () => { cur.style.width = '10px'; cur.style.height = '10px'; });
+    });
+
+    // ── Language ──
+    let lang = 'en';
+    function setLang(l) {
+      lang = l;
+      document.querySelectorAll('[data-en]').forEach(el => {
+        const txt = el.getAttribute('data-' + l);
+        if (txt) el.innerHTML = txt;
+      });
+      document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
+      document.querySelector('.lang-btn:' + (l === 'en' ? 'first' : 'last') + '-child').classList.add('active');
+    }
+
+    // ── Scroll reveal ──
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        if (e.isIntersecting) { e.target.style.opacity = '1'; e.target.style.transform = 'translateY(0)'; }
+      });
+    }, { threshold: .1 });
+    document.querySelectorAll('.project-card, .about-grid > *').forEach(el => {
+      el.style.opacity = '0';
+      el.style.transform = 'translateY(24px)';
+      el.style.transition = 'opacity .7s var(--ease), transform .7s var(--ease)';
+      observer.observe(el);
+    });
+  </script>
+</body>
+</html>

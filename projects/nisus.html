@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>01. Nisus — Lorenzo Paulato</title>
+  <link rel="stylesheet" href="../style.css">
+  <link rel="stylesheet" href="../project.css">
+  <style>
+    body { background: var(--black); color: var(--white); }
+    .proj-hero { background: var(--black); }
+    .proj-wireframe-wrap img { filter: invert(1); opacity: .85; }
+
+    /* Section alternation */
+    .sec-black { background: var(--black); color: var(--white); }
+    .sec-white { background: var(--white); color: var(--black); }
+    .sec-white .proj-body strong { color: var(--black); }
+    .sec-white .proj-section-label { color: var(--red); }
+    .sec-white .proj-stat { border-color: rgba(0,0,0,.08); }
+    .sec-white .proj-stat-label { color: rgba(0,0,0,.4); }
+    .sec-white .proj-tag { color: var(--black); }
+    .sec-white footer p, .sec-white footer a { color: rgba(0,0,0,.35); }
+    .sec-white footer { border-top-color: rgba(0,0,0,.08); }
+
+    .callout-black { background: var(--black); color: var(--white); }
+    .callout-black .proj-callout-line { background: var(--red); }
+
+    .sec-detail {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0;
+    }
+    .sec-detail-text {
+      padding: 80px 48px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+    .sec-detail-img {
+      overflow: hidden;
+    }
+    .sec-detail-img img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+    @media (max-width: 900px) {
+      .sec-detail { grid-template-columns: 1fr; }
+      .sec-detail-img { aspect-ratio: 4/3; }
+      .sec-detail-text { padding: 40px 24px; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="cursor" id="cursor"></div>
+  <div class="cursor-ring" id="cursorRing"></div>
+
+  <nav>
+    <a class="nav-logo" href="../index.html">LP</a>
+    <div class="nav-right">
+      <ul class="nav-links">
+        <li><a href="../index.html#projects" data-en="Work" data-it="Lavori">Work</a></li>
+        <li><a href="../index.html#about" data-en="About" data-it="Info">About</a></li>
+        <li><a href="mailto:paulato.lorenzo@gmail.com" data-en="Contact" data-it="Contatti">Contact</a></li>
+      </ul>
+      <div class="lang-toggle">
+        <button class="lang-btn active" onclick="setLang('en')">EN</button>
+        <button class="lang-btn" onclick="setLang('it')">IT</button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="proj-hero">
+    <div class="proj-hero-left">
+      <div class="proj-index" aria-hidden="true">01</div>
+      <div class="proj-back-wrap">
+        <a class="back-btn" href="../index.html">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+            <path d="M14 8H2M2 8L8 2M2 8L8 14" stroke="currentColor" stroke-width="1.2"/>
+          </svg>
+          <span data-en="All Projects" data-it="Tutti i Progetti">All Projects</span>
+        </a>
+      </div>
+      <span style="color:var(--red);font-family:var(--font-display);font-size:11px;letter-spacing:.18em;text-transform:uppercase;margin-bottom:12px;display:block">01 —</span>
+      <h1 class="proj-title">Nisus</h1>
+      <p class="proj-subtitle" data-en="Not just a lamp" data-it="Non solo una lampada">Not just a lamp</p>
+      <div class="proj-meta">
+        <div class="proj-meta-row">
+          <span class="proj-meta-label" data-en="With" data-it="Con">With</span>
+          <span class="proj-meta-val">H.E. Pianezza, M. Trinchero, J.J. Ricci</span>
+        </div>
+        <div class="proj-meta-row">
+          <span class="proj-meta-label" data-en="My Role" data-it="Il Mio Ruolo">My Role</span>
+          <span class="proj-meta-val" data-en="Concept Dev., 3D Modeling, Engineering" data-it="Sviluppo Concept, Modellazione 3D, Ingegneria">Concept Dev., 3D Modeling, Engineering</span>
+        </div>
+        <div class="proj-meta-row">
+          <span class="proj-meta-label" data-en="Year" data-it="Anno">Year</span>
+          <span class="proj-meta-val">2024</span>
+        </div>
+      </div>
+    </div>
+    <div class="proj-hero-right" id="heroRight">
+      <div class="proj-wireframe-wrap">
+        <img src="../assets/images/4.jpeg" alt="Nisus wireframe">
+      </div>
+      <div class="proj-photo-wrap">
+        <img src="../assets/images/5.jpeg" alt="Nisus lamp render">
+      </div>
+      <button class="reveal-btn" id="revealBtn" data-en="Reveal Product" data-it="Mostra Prodotto" onclick="revealProduct()">Reveal Product</button>
+    </div>
+    <div class="proj-hero-line" style="background:rgba(255,255,255,1)"></div>
+  </section>
+
+  <!-- CONCEPT -->
+  <section class="proj-section sec-black">
+    <p class="proj-section-label" data-en="Concept" data-it="Concetto">Concept</p>
+    <p class="proj-body" data-en="Managing time is complex — balancing <strong>focus and rest</strong> even more. What if a lamp could shape our day simply by doing what it was made to do? Nisus is a desk lamp with an integrated timer: one gesture activates a 25-minute Pomodoro cycle, helping structure work sessions without a screen in sight." data-it="Gestire il tempo è complesso — bilanciare <strong>concentrazione e riposo</strong> lo è ancora di più. E se una lampada potesse strutturare la nostra giornata semplicemente facendo ciò per cui è stata progettata? Nisus è una lampada da scrivania con timer integrato: un solo gesto attiva un ciclo Pomodoro da 25 minuti.">
+      Managing time is complex — balancing <strong>focus and rest</strong> even more. What if a lamp could shape our day simply by doing what it was made to do? Nisus is a desk lamp with an integrated timer: one gesture activates a 25-minute Pomodoro cycle, helping structure work sessions without a screen in sight.
+    </p>
+  </section>
+
+  <!-- FULL BLEED RENDER -->
+  <div class="proj-fullbleed">
+    <img src="../assets/images/5.jpeg" alt="Nisus lamp in context">
+  </div>
+
+  <!-- DETAIL: slider -->
+  <div class="sec-detail sec-white">
+    <div class="sec-detail-text">
+      <p class="proj-section-label" data-en="Interaction" data-it="Interazione">Interaction</p>
+      <p class="proj-body" style="color:var(--black)" data-en="A <strong>slider</strong> adjusts brightness. An <strong>hourglass button</strong> activates the focus timer. Everything within reach — no app, no screen, no distraction." data-it="Un <strong>cursore</strong> regola la luminosità. Un <strong>pulsante a clessidra</strong> attiva il timer. Tutto a portata di mano — nessuna app, nessuno schermo, nessuna distrazione.">
+        A <strong>slider</strong> adjusts brightness. An <strong>hourglass button</strong> activates the focus timer. Everything within reach — no app, no screen, no distraction.
+      </p>
+    </div>
+    <div class="sec-detail-img">
+      <img src="../assets/images/6.jpeg" alt="Nisus base detail">
+    </div>
+  </div>
+
+  <!-- CALLOUT -->
+  <div class="proj-callout callout-black">
+    <div class="proj-callout-line" style="background:var(--red)"></div>
+    <p class="proj-callout-text" data-en="Shape that<br>structures time." data-it="Una forma che<br>struttura il tempo.">Shape that<br>structures time.</p>
+  </div>
+
+  <!-- ENGINEERING -->
+  <div class="proj-two-col">
+    <img src="../assets/images/7.jpeg" alt="Nisus exploded view">
+    <img src="../assets/images/8.jpeg" alt="Nisus 3D printed prototype">
+  </div>
+
+  <!-- STATS -->
+  <div class="proj-stats sec-black">
+    <div class="proj-stat">
+      <div class="proj-stat-num">360°</div>
+      <div class="proj-stat-label" data-en="Arm rotation" data-it="Rotazione braccio">Arm rotation</div>
+    </div>
+    <div class="proj-stat">
+      <div class="proj-stat-num">25'</div>
+      <div class="proj-stat-label" data-en="Focus timer" data-it="Timer focus">Focus timer</div>
+    </div>
+    <div class="proj-stat">
+      <div class="proj-stat-num">3D</div>
+      <div class="proj-stat-label" data-en="Printed prototype" data-it="Prototipo stampato">Printed prototype</div>
+    </div>
+  </div>
+
+  <!-- TAGS -->
+  <div class="proj-tags sec-black" style="padding-top:48px">
+    <span class="proj-tag">Lamp</span>
+    <span class="proj-tag">Timer</span>
+    <span class="proj-tag">3D Modeling</span>
+    <span class="proj-tag">Rhinoceros</span>
+    <span class="proj-tag">Product Engineering</span>
+    <span class="proj-tag">Pomodoro</span>
+  </div>
+
+  <!-- PROJECT NAV -->
+  <div class="project-nav">
+    <span></span>
+    <a class="proj-nav-link" href="monolith.html">
+      <span>
+        <span class="proj-nav-label" data-en="Next Project" data-it="Progetto Successivo">Next Project</span>
+        02. Monolith
+      </span>
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+        <path d="M2 8H14M14 8L8 2M14 8L8 14" stroke="currentColor" stroke-width="1.2"/>
+      </svg>
+    </a>
+  </div>
+
+  <footer>
+    <p>© 2026 Lorenzo Paulato</p>
+    <p data-en="Helping Through Shape" data-it="Aiutare attraverso la Forma">Helping Through Shape</p>
+    <a href="mailto:paulato.lorenzo@gmail.com">paulato.lorenzo@gmail.com</a>
+  </footer>
+
+  <script>
+    const cur = document.getElementById('cursor');
+    const ring = document.getElementById('cursorRing');
+    let mx=0,my=0,rx=0,ry=0;
+    document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;});
+    function animCursor(){cur.style.left=mx+'px';cur.style.top=my+'px';rx+=(mx-rx)*.12;ry+=(my-ry)*.12;ring.style.left=rx+'px';ring.style.top=ry+'px';requestAnimationFrame(animCursor);}
+    animCursor();
+    document.querySelectorAll('a,button').forEach(el=>{el.addEventListener('mouseenter',()=>{cur.style.width='20px';cur.style.height='20px';});el.addEventListener('mouseleave',()=>{cur.style.width='10px';cur.style.height='10px';});});
+
+    function revealProduct(){
+      document.getElementById('heroRight').classList.toggle('revealed');
+      const btn = document.getElementById('revealBtn');
+      const isRevealed = document.getElementById('heroRight').classList.contains('revealed');
+      const lang = document.querySelector('.lang-btn.active').textContent.toLowerCase();
+      btn.textContent = isRevealed ? (lang==='en'?'Show Wireframe':'Mostra Wireframe') : (lang==='en'?'Reveal Product':'Mostra Prodotto');
+    }
+
+    let lang='en';
+    function setLang(l){lang=l;document.querySelectorAll('[data-en]').forEach(el=>{const t=el.getAttribute('data-'+l);if(t)el.innerHTML=t;});document.querySelectorAll('.lang-btn').forEach(b=>b.classList.remove('active'));document.querySelector('.lang-btn:'+(l==='en'?'first':'last')+'-child').classList.add('active');}
+
+    const obs=new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting){e.target.style.opacity='1';e.target.style.transform='translateY(0)'}}),{threshold:.1});
+    document.querySelectorAll('.proj-section,.proj-callout,.proj-stat,.proj-two-col,.proj-fullbleed,.sec-detail').forEach(el=>{el.style.opacity='0';el.style.transform='translateY(24px)';el.style.transition='opacity .7s var(--ease),transform .7s var(--ease)';obs.observe(el);});
+  </script>
+</body>
+</html>

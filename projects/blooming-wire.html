@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>03. Blooming Wire — Lorenzo Paulato</title>
+  <link rel="stylesheet" href="../style.css">
+  <link rel="stylesheet" href="../project.css">
+  <style>
+    body { background: var(--red); color: var(--white); }
+
+    nav { mix-blend-mode: normal; }
+
+    .proj-hero { background: var(--red); }
+    .proj-wireframe-wrap img { filter: none; opacity: .9; }
+    .proj-index { color: rgba(255,255,255,.08); }
+
+    /* Reveal btn on red */
+    .reveal-btn { border-color: rgba(255,255,255,.3); color: rgba(255,255,255,.7); }
+    .reveal-btn:hover { background: var(--black); border-color: var(--black); color: var(--white); }
+
+    /* Win badge */
+    .win-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(255,255,255,.12);
+      border: 1px solid rgba(255,255,255,.2);
+      padding: 6px 14px;
+      font-family: var(--font-display);
+      font-size: 10px;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,.8);
+      margin-top: 20px;
+    }
+    .win-badge::before { content: '★'; color: var(--white); }
+
+    /* Sections */
+    .sec-red   { background: var(--red);   color: var(--white); }
+    .sec-black { background: var(--black); color: var(--white); }
+    .sec-white { background: var(--white); color: var(--black); }
+    .sec-white .proj-section-label { color: var(--red); }
+    .sec-white .proj-body strong   { color: var(--black); }
+
+    .callout-black { background: var(--black); color: var(--white); }
+    .callout-black .proj-callout-line { background: var(--white); }
+
+    .callout-red { background: var(--red); color: var(--white); }
+    .callout-red .proj-callout-line { background: var(--white); }
+
+    .sec-detail { display: grid; grid-template-columns: 1fr 1fr; gap: 0; }
+    .sec-detail-text { padding: 80px 48px; display: flex; flex-direction: column; justify-content: center; }
+    .sec-detail-img { overflow: hidden; }
+    .sec-detail-img img { width:100%; height:100%; object-fit:cover; display:block; }
+
+    /* Steps grid */
+    .steps-section {
+      background: var(--white);
+      color: var(--black);
+      padding: 80px 48px;
+    }
+    .steps-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2px;
+      margin-top: 40px;
+    }
+    .step-img {
+      overflow: hidden;
+      aspect-ratio: 1;
+      background: #f0f0f0;
+    }
+    .step-img img { width:100%; height:100%; object-fit:cover; display:block; }
+
+    /* Stats on red */
+    .proj-stats.on-red { background: var(--red); }
+    .proj-stats.on-red .proj-stat { border-color: rgba(255,255,255,.15); }
+    .proj-stats.on-red .proj-stat-num { color: var(--white); }
+    .proj-stats.on-red .proj-stat-label { color: rgba(255,255,255,.4); }
+
+    .proj-tags.on-red .proj-tag { color: var(--white); border-color: rgba(255,255,255,.3); }
+
+    footer { border-top-color: rgba(255,255,255,.12) !important; }
+
+    .project-nav { border-top-color: rgba(255,255,255,.12); }
+    .proj-nav-link { color: rgba(255,255,255,.4); }
+    .proj-nav-link:hover { color: var(--white); }
+
+    ::-webkit-scrollbar-track { background: var(--red); }
+
+    @media (max-width: 900px) {
+      .sec-detail { grid-template-columns: 1fr; }
+      .sec-detail-img { aspect-ratio: 4/3; }
+      .sec-detail-text { padding: 40px 24px; }
+      .steps-grid { grid-template-columns: 1fr 1fr; }
+      .steps-section { padding: 60px 24px; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="cursor" id="cursor"></div>
+  <div class="cursor-ring" id="cursorRing"></div>
+
+  <nav>
+    <a class="nav-logo" href="../index.html">LP</a>
+    <div class="nav-right">
+      <ul class="nav-links">
+        <li><a href="../index.html#projects" data-en="Work" data-it="Lavori">Work</a></li>
+        <li><a href="../index.html#about" data-en="About" data-it="Info">About</a></li>
+        <li><a href="mailto:paulato.lorenzo@gmail.com" data-en="Contact" data-it="Contatti">Contact</a></li>
+      </ul>
+      <div class="lang-toggle">
+        <button class="lang-btn active" onclick="setLang('en')">EN</button>
+        <button class="lang-btn" onclick="setLang('it')">IT</button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="proj-hero">
+    <div class="proj-hero-left">
+      <div class="proj-index" aria-hidden="true">03</div>
+      <div class="proj-back-wrap">
+        <a class="back-btn" href="../index.html" style="color:rgba(255,255,255,.4)">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+            <path d="M14 8H2M2 8L8 2M2 8L8 14" stroke="currentColor" stroke-width="1.2"/>
+          </svg>
+          <span data-en="All Projects" data-it="Tutti i Progetti">All Projects</span>
+        </a>
+      </div>
+      <span style="color:rgba(255,255,255,.5);font-family:var(--font-display);font-size:11px;letter-spacing:.18em;text-transform:uppercase;margin-bottom:12px;display:block">03 —</span>
+      <h1 class="proj-title">Blooming<br>Wire</h1>
+      <p class="proj-subtitle" data-en="Flower Holder" data-it="Portafiori">Flower Holder</p>
+      <div class="proj-meta">
+        <div class="proj-meta-row">
+          <span class="proj-meta-label" data-en="With" data-it="Con">With</span>
+          <span class="proj-meta-val">C. Schillaci, M. Trinchero, M. Vindrola</span>
+        </div>
+        <div class="proj-meta-row">
+          <span class="proj-meta-label" data-en="My Role" data-it="Il Mio Ruolo">My Role</span>
+          <span class="proj-meta-val" data-en="Concept Dev., 3D Modeling, Prototyping" data-it="Sviluppo Concept, Modellazione 3D, Prototipazione">Concept Dev., 3D Modeling, Prototyping</span>
+        </div>
+        <div class="proj-meta-row">
+          <span class="proj-meta-label" data-en="Year" data-it="Anno">Year</span>
+          <span class="proj-meta-val">2024</span>
+        </div>
+      </div>
+      <div class="win-badge" data-en="★ Winners — Concept Design Competition" data-it="★ Vincitori — Concept Design Competition">Winners — Concept Design Competition</div>
+    </div>
+    <div class="proj-hero-right" id="heroRight">
+      <div class="proj-wireframe-wrap">
+        <img src="../assets/images/15.jpeg" alt="Blooming Wire wireframe">
+      </div>
+      <div class="proj-photo-wrap">
+        <img src="../assets/images/19.jpeg" alt="Blooming Wire final product">
+      </div>
+      <button class="reveal-btn" id="revealBtn" data-en="Reveal Product" data-it="Mostra Prodotto" onclick="revealProduct()">Reveal Product</button>
+    </div>
+    <div class="proj-hero-line" style="background:rgba(255,255,255,1)"></div>
+  </section>
+
+  <!-- CONCEPT -->
+  <section class="proj-section sec-red">
+    <p class="proj-section-label" style="color:rgba(255,255,255,.5)" data-en="Concept" data-it="Concetto">Concept</p>
+    <p class="proj-body" data-en="Create a container that <strong>enhances flowers</strong> and can serve as a stand using any glass as a vase. Foldable to take up minimal space, designed to be reused and shared with a spirit of sustainability. Inspired by transformable <strong>Mandalas</strong> — mechanical joints are replaced by shape-based joints, resulting in a single-material object made entirely of wire." data-it="Creare un contenitore che <strong>valorizzi i fiori</strong> e possa fungere da supporto usando qualsiasi bicchiere come vaso. Pieghevole per occupare poco spazio, progettato per essere riutilizzato con uno spirito di sostenibilità. Ispirato ai <strong>Mandala</strong> trasformabili — i giunti meccanici sono sostituiti da giunti di forma, ottenendo un oggetto mono-materiale interamente in filo metallico.">
+      Create a container that <strong>enhances flowers</strong> and can serve as a stand using any glass as a vase. Foldable to take up minimal space, designed to be reused and shared with a spirit of sustainability. Inspired by transformable <strong>Mandalas</strong> — mechanical joints are replaced by shape-based joints, resulting in a single-material object made entirely of wire.
+    </p>
+  </section>
+
+  <!-- CONCEPT SKETCHES -->
+  <div class="proj-fullbleed">
+    <img src="../assets/images/16.jpeg" alt="Blooming Wire concept sketches">
+  </div>
+
+  <!-- CALLOUT -->
+  <div class="proj-callout callout-black">
+    <div class="proj-callout-line"></div>
+    <p class="proj-callout-text" data-en="One material.<br>Infinite bloom." data-it="Un solo materiale.<br>Fioritura infinita.">One material.<br>Infinite bloom.</p>
+  </div>
+
+  <!-- 3D model + detail -->
+  <div class="sec-detail">
+    <div class="sec-detail-img">
+      <img src="../assets/images/17.jpeg" alt="Blooming Wire 3D model">
+    </div>
+    <div class="sec-detail-text sec-white">
+      <p class="proj-section-label">Form</p>
+      <p class="proj-body" style="color:var(--black)" data-en="The hourglass silhouette references the organic form of a vase, rebuilt in wire. The <strong>shape-based joints</strong> at each intersection allow the structure to collapse flat and expand into a volumetric holder — one gesture, one object, no tools." data-it="La sagoma a clessidra richiama la forma organica di un vaso, ricostituita in filo metallico. I <strong>giunti di forma</strong> ad ogni intersezione consentono alla struttura di collassarsi piatta ed espandersi in un supporto volumetrico — un solo gesto, un solo oggetto, nessuno strumento.">
+        The hourglass silhouette references the organic form of a vase, rebuilt in wire. The <strong>shape-based joints</strong> at each intersection allow the structure to collapse flat and expand into a volumetric holder — one gesture, one object, no tools.
+      </p>
+    </div>
+  </div>
+
+  <!-- USAGE STEPS -->
+  <div class="steps-section">
+    <p class="proj-section-label" data-en="How it works" data-it="Come funziona">How it works</p>
+    <p class="proj-body" data-en="9 gestures from flat to blooming — the wire structure opens, locks, and holds any bouquet in place while a glass inside acts as the vase." data-it="9 gesti dal piano alla fioritura — la struttura in filo si apre, si blocca e sorregge qualsiasi bouquet mentre un bicchiere all'interno funge da vaso.">
+      9 gestures from flat to blooming — the wire structure opens, locks, and holds any bouquet in place while a glass inside acts as the vase.
+    </p>
+    <div class="steps-grid">
+      <div class="step-img"><img src="../assets/images/18.jpeg" alt="Blooming Wire usage steps"></div>
+      <div class="step-img"><img src="../assets/images/17.jpeg" alt="Blooming Wire assembled"></div>
+      <div class="step-img"><img src="../assets/images/19.jpeg" alt="Blooming Wire in use"></div>
+    </div>
+  </div>
+
+  <!-- WINNER FULL BLEED -->
+  <div class="proj-fullbleed">
+    <img src="../assets/images/19.jpeg" alt="Competition winning photo">
+  </div>
+
+  <!-- STATS -->
+  <div class="proj-stats on-red">
+    <div class="proj-stat">
+      <div class="proj-stat-num">1</div>
+      <div class="proj-stat-label" data-en="Material — wire" data-it="Materiale — filo">Material — wire</div>
+    </div>
+    <div class="proj-stat">
+      <div class="proj-stat-num">9</div>
+      <div class="proj-stat-label" data-en="Steps to assemble" data-it="Passi per assemblare">Steps to assemble</div>
+    </div>
+    <div class="proj-stat">
+      <div class="proj-stat-num">🏆</div>
+      <div class="proj-stat-label" data-en="Competition winner" data-it="Vincitore competizione">Competition winner</div>
+    </div>
+  </div>
+
+  <!-- TAGS -->
+  <div class="proj-tags on-red" style="padding-top:48px">
+    <span class="proj-tag" data-en="Flower Holder" data-it="Portafiori">Flower Holder</span>
+    <span class="proj-tag">Wire</span>
+    <span class="proj-tag" data-en="Single Material" data-it="Mono-Materiale">Single Material</span>
+    <span class="proj-tag">Sustainability</span>
+    <span class="proj-tag" data-en="Competition Winner" data-it="Vincitore">Competition Winner</span>
+    <span class="proj-tag">Rhinoceros</span>
+  </div>
+
+  <!-- PROJECT NAV -->
+  <div class="project-nav">
+    <a class="proj-nav-link" href="monolith.html">
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+        <path d="M14 8H2M2 8L8 2M2 8L8 14" stroke="currentColor" stroke-width="1.2"/>
+      </svg>
+      <span>
+        <span class="proj-nav-label" data-en="Previous" data-it="Precedente">Previous</span>
+        02. Monolith
+      </span>
+    </a>
+    <a class="proj-nav-link" href="trust-me.html">
+      <span>
+        <span class="proj-nav-label" data-en="Next Project" data-it="Progetto Successivo">Next Project</span>
+        04. Trust Me
+      </span>
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+        <path d="M2 8H14M14 8L8 2M14 8L8 14" stroke="currentColor" stroke-width="1.2"/>
+      </svg>
+    </a>
+  </div>
+
+  <footer>
+    <p>© 2026 Lorenzo Paulato</p>
+    <p data-en="Helping Through Shape" data-it="Aiutare attraverso la Forma">Helping Through Shape</p>
+    <a href="mailto:paulato.lorenzo@gmail.com">paulato.lorenzo@gmail.com</a>
+  </footer>
+
+  <script>
+    const cur=document.getElementById('cursor');const ring=document.getElementById('cursorRing');let mx=0,my=0,rx=0,ry=0;document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;});function animCursor(){cur.style.left=mx+'px';cur.style.top=my+'px';rx+=(mx-rx)*.12;ry+=(my-ry)*.12;ring.style.left=rx+'px';ring.style.top=ry+'px';requestAnimationFrame(animCursor);}animCursor();document.querySelectorAll('a,button').forEach(el=>{el.addEventListener('mouseenter',()=>{cur.style.width='20px';cur.style.height='20px';});el.addEventListener('mouseleave',()=>{cur.style.width='10px';cur.style.height='10px';});});
+    function revealProduct(){const h=document.getElementById('heroRight');h.classList.toggle('revealed');const btn=document.getElementById('revealBtn');const rev=h.classList.contains('revealed');const l=document.querySelector('.lang-btn.active').textContent.toLowerCase();btn.textContent=rev?(l==='en'?'Show Wireframe':'Mostra Wireframe'):(l==='en'?'Reveal Product':'Mostra Prodotto');}
+    let lang='en';function setLang(l){lang=l;document.querySelectorAll('[data-en]').forEach(el=>{const t=el.getAttribute('data-'+l);if(t)el.innerHTML=t;});document.querySelectorAll('.lang-btn').forEach(b=>b.classList.remove('active'));document.querySelector('.lang-btn:'+(l==='en'?'first':'last')+'-child').classList.add('active');}
+    const obs=new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting){e.target.style.opacity='1';e.target.style.transform='translateY(0)'}}),{threshold:.1});document.querySelectorAll('.proj-section,.proj-callout,.proj-stat,.proj-two-col,.proj-fullbleed,.sec-detail,.steps-section').forEach(el=>{el.style.opacity='0';el.style.transform='translateY(24px)';el.style.transition='opacity .7s var(--ease),transform .7s var(--ease)';obs.observe(el);});
+  </script>
+</body>
+</html>

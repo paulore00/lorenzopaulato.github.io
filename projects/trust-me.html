@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>04. Trust Me — Lorenzo Paulato</title>
+  <link rel="stylesheet" href="../style.css">
+  <link rel="stylesheet" href="../project.css">
+  <style>
+    body { background: var(--black); color: var(--white); }
+    .proj-hero { background: var(--black); }
+    .proj-wireframe-wrap img { filter: none; opacity: .85; }
+    .proj-index { color: rgba(255,255,255,.05); }
+
+    /* Red accent top line */
+    .hero-top-line {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      height: 2px;
+      background: var(--red);
+      z-index: 200;
+      transform-origin: left;
+      animation: lineSlide 1.2s var(--ease) both;
+    }
+    @keyframes lineSlide {
+      from { transform: scaleX(0); }
+      to   { transform: scaleX(1); }
+    }
+
+    /* sections */
+    .sec-black { background: var(--black); color: var(--white); }
+    .sec-white { background: var(--white); color: var(--black); }
+    .sec-white .proj-section-label { color: var(--red); }
+    .sec-white .proj-body strong   { color: var(--black); }
+
+    .callout-red { background: var(--red); color: var(--white); }
+    .callout-red .proj-callout-line { background: var(--white); }
+    .callout-black { background: var(--black); color: var(--white); }
+    .callout-black .proj-callout-line { background: var(--red); }
+
+    /* Components table — technical feel */
+    .components-section {
+      background: var(--black);
+      padding: 80px 48px;
+    }
+    .components-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 32px;
+      font-family: 'Courier New', monospace;
+      font-size: 13px;
+    }
+    .components-table th {
+      text-align: left;
+      padding: 12px 16px;
+      border-bottom: 1px solid var(--red);
+      font-family: var(--font-display);
+      font-size: 10px;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      color: var(--red);
+    }
+    .components-table td {
+      padding: 14px 16px;
+      border-bottom: 1px solid rgba(255,255,255,.05);
+      color: rgba(255,255,255,.65);
+    }
+    .components-table tr:hover td { background: rgba(156,25,21,.08); color: var(--white); }
+    .comp-num { color: var(--red); font-weight: 700; }
+
+    /* Speculative notice */
+    .notice-box {
+      border: 1px solid rgba(156,25,21,.4);
+      padding: 24px 32px;
+      margin-top: 40px;
+      max-width: 560px;
+    }
+    .notice-box p {
+      font-family: 'Courier New', monospace;
+      font-size: 11px;
+      line-height: 1.7;
+      color: rgba(255,255,255,.4);
+    }
+    .notice-box strong { color: var(--red); font-style: normal; }
+
+    .sec-detail { display: grid; grid-template-columns: 1fr 1fr; gap: 0; }
+    .sec-detail-text { padding: 80px 48px; display: flex; flex-direction: column; justify-content: center; }
+    .sec-detail-img { overflow: hidden; }
+    .sec-detail-img img { width:100%; height:100%; object-fit:cover; display:block; }
+
+    /* Stats on black */
+    .proj-stats.on-black { background: var(--black); }
+    .proj-stats.on-black .proj-stat { border-color: rgba(255,255,255,.06); }
+
+    .proj-tags.on-black .proj-tag { color: var(--white); }
+
+    @media (max-width: 900px) {
+      .sec-detail { grid-template-columns: 1fr; }
+      .sec-detail-img { aspect-ratio: 4/3; }
+      .sec-detail-text { padding: 40px 24px; }
+      .components-section { padding: 60px 24px; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="hero-top-line"></div>
+  <div class="cursor" id="cursor"></div>
+  <div class="cursor-ring" id="cursorRing"></div>
+
+  <nav>
+    <a class="nav-logo" href="../index.html">LP</a>
+    <div class="nav-right">
+      <ul class="nav-links">
+        <li><a href="../index.html#projects" data-en="Work" data-it="Lavori">Work</a></li>
+        <li><a href="../index.html#about" data-en="About" data-it="Info">About</a></li>
+        <li><a href="mailto:paulato.lorenzo@gmail.com" data-en="Contact" data-it="Contatti">Contact</a></li>
+      </ul>
+      <div class="lang-toggle">
+        <button class="lang-btn active" onclick="setLang('en')">EN</button>
+        <button class="lang-btn" onclick="setLang('it')">IT</button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="proj-hero">
+    <div class="proj-hero-left">
+      <div class="proj-index" aria-hidden="true">04</div>
+      <div class="proj-back-wrap">
+        <a class="back-btn" href="../index.html">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+            <path d="M14 8H2M2 8L8 2M2 8L8 14" stroke="currentColor" stroke-width="1.2"/>
+          </svg>
+          <span data-en="All Projects" data-it="Tutti i Progetti">All Projects</span>
+        </a>
+      </div>
+      <span style="color:var(--red);font-family:var(--font-display);font-size:11px;letter-spacing:.18em;text-transform:uppercase;margin-bottom:12px;display:block">04 —</span>
+      <h1 class="proj-title">Trust<br>Me</h1>
+      <p class="proj-subtitle" data-en="A Speculative Design" data-it="Un Design Speculativo">A Speculative Design</p>
+      <div class="proj-meta">
+        <div class="proj-meta-row">
+          <span class="proj-meta-label" data-en="Type" data-it="Tipo">Type</span>
+          <span class="proj-meta-val" data-en="Personal Project" data-it="Progetto Personale">Personal Project</span>
+        </div>
+        <div class="proj-meta-row">
+          <span class="proj-meta-label" data-en="Medium" data-it="Mezzo">Medium</span>
+          <span class="proj-meta-val">ESP32-CAM + 3D Print</span>
+        </div>
+        <div class="proj-meta-row">
+          <span class="proj-meta-label" data-en="Year" data-it="Anno">Year</span>
+          <span class="proj-meta-val">2025</span>
+        </div>
+      </div>
+    </div>
+    <div class="proj-hero-right" id="heroRight">
+      <div class="proj-wireframe-wrap">
+        <img src="../assets/images/20.jpeg" alt="Trust Me technical drawing">
+      </div>
+      <div class="proj-photo-wrap">
+        <img src="../assets/images/23.jpeg" alt="Trust Me worn prototype">
+      </div>
+      <button class="reveal-btn" id="revealBtn" data-en="Reveal Product" data-it="Mostra Prodotto" onclick="revealProduct()">Reveal Product</button>
+    </div>
+    <div class="proj-hero-line" style="background:rgba(255,255,255,1)"></div>
+  </section>
+
+  <!-- TOPIC -->
+  <section class="proj-section sec-black">
+    <p class="proj-section-label" data-en="Topic" data-it="Tema">Topic</p>
+    <p class="proj-body" data-en="On an <strong>AI that knows us better than we know ourselves</strong> — what happens when we begin to delegate even our social choices? Trust Me is a wearable facial recognition device that analyzes people around you and suggests, in real time, whether to trust them. A provocation: a physical object that makes visible the invisible algorithms already shaping our social world." data-it="Su un'<strong>AI che ci conosce meglio di quanto conosciamo noi stessi</strong> — cosa accade quando iniziamo a delegare anche le nostre scelte sociali? Trust Me è un dispositivo indossabile di riconoscimento facciale che analizza le persone intorno a te e suggerisce, in tempo reale, di fidarsi o meno. Una provocazione: un oggetto fisico che rende visibili gli algoritmi invisibili che già plasmano il nostro mondo sociale.">
+      On an <strong>AI that knows us better than we know ourselves</strong> — what happens when we begin to delegate even our social choices? Trust Me is a wearable facial recognition device that analyzes people around you and suggests, in real time, whether to trust them. A provocation: a physical object that makes visible the invisible algorithms already shaping our social world.
+    </p>
+  </section>
+
+  <!-- CALLOUT RED -->
+  <div class="proj-callout callout-red">
+    <div class="proj-callout-line"></div>
+    <p class="proj-callout-text" data-en="What if you let a machine<br>decide who to trust?" data-it="E se lasciassi decidere a una macchina<br>di chi fidarti?">What if you let a machine<br>decide who to trust?</p>
+  </div>
+
+  <!-- TECHNICAL DIAGRAM -->
+  <div class="proj-fullbleed">
+    <img src="../assets/images/21.jpeg" alt="Trust Me facial recognition system technical diagram">
+  </div>
+
+  <!-- COMPONENTS TABLE -->
+  <div class="components-section">
+    <p class="proj-section-label" data-en="Components" data-it="Componenti">Components</p>
+    <table class="components-table">
+      <thead>
+        <tr>
+          <th>Ref.</th>
+          <th data-en="Component" data-it="Componente">Component</th>
+          <th data-en="Function" data-it="Funzione">Function</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td class="comp-num">01</td><td>ESP32-CAM</td><td data-en="Camera + microcontroller" data-it="Telecamera + microcontrollore">Camera + microcontroller</td></tr>
+        <tr><td class="comp-num">02</td><td>OLED Display</td><td data-en="Real-time trust score output" data-it="Output punteggio di fiducia in tempo reale">Real-time trust score output</td></tr>
+        <tr><td class="comp-num">03</td><td>Speaker</td><td data-en="Audio feedback" data-it="Feedback audio">Audio feedback</td></tr>
+        <tr><td class="comp-num">04</td><td>Button</td><td data-en="Manual trigger / override" data-it="Trigger manuale / override">Manual trigger / override</td></tr>
+        <tr><td class="comp-num">05</td><td>MicroSD Memory</td><td data-en="Face data storage" data-it="Archiviazione dati facciali">Face data storage</td></tr>
+        <tr><td class="comp-num">06</td><td>DFPlayer Amplifier</td><td data-en="Audio amplification" data-it="Amplificazione audio">Audio amplification</td></tr>
+        <tr><td class="comp-num">07</td><td>ESP32-CAM MB</td><td data-en="Programming board" data-it="Scheda di programmazione">Programming board</td></tr>
+        <tr><td class="comp-num">08</td><td>Fabric Band</td><td data-en="Wearable mounting with Velcro" data-it="Montaggio indossabile con Velcro">Wearable mounting with Velcro</td></tr>
+      </tbody>
+    </table>
+
+    <div class="notice-box">
+      <p><strong>NOTICE</strong><br>
+      <span data-en="The facial recognition system operates within predefined parameters. Performance may vary depending on lighting, positioning, and data interpretation. No guarantee of accuracy or consistency is provided. Decisions based on the system's output remain the sole responsibility of the user." data-it="Il sistema di riconoscimento facciale opera entro parametri predefiniti. Le prestazioni possono variare a seconda dell'illuminazione, del posizionamento e dell'interpretazione dei dati. Non viene fornita alcuna garanzia di accuratezza o coerenza. Le decisioni basate sull'output del sistema rimangono responsabilità esclusiva dell'utente.">The facial recognition system operates within predefined parameters. Performance may vary depending on lighting, positioning, and data interpretation. No guarantee of accuracy or consistency is provided. Decisions based on the system's output remain the sole responsibility of the user.</span>
+      </p>
+    </div>
+  </div>
+
+  <!-- PROTOTYPE DETAIL -->
+  <div class="sec-detail">
+    <div class="sec-detail-img">
+      <img src="../assets/images/22.jpeg" alt="Trust Me display showing 55% GOOD MATCH">
+    </div>
+    <div class="sec-detail-text sec-black">
+      <p class="proj-section-label" data-en="Output" data-it="Output">Output</p>
+      <p class="proj-body" data-en="The OLED display shows a <strong>trust percentage</strong> alongside a label: BAD MATCH, GOOD MATCH, PERFECT MATCH. The device then plays a brief audio message. The unsettling simplicity of this output is the point — this is how opaque algorithmic judgment feels." data-it="Il display OLED mostra una <strong>percentuale di fiducia</strong> insieme a un'etichetta: BAD MATCH, GOOD MATCH, PERFECT MATCH. Il dispositivo riproduce quindi un breve messaggio audio. L'inquietante semplicità di questo output è il punto — ecco come si sente il giudizio algoritmico opaco.">
+        The OLED display shows a <strong>trust percentage</strong> alongside a label: BAD MATCH, GOOD MATCH, PERFECT MATCH. The device then plays a brief audio message. The unsettling simplicity of this output is the point — this is how opaque algorithmic judgment feels.
+      </p>
+    </div>
+  </div>
+
+  <!-- WORN PHOTO FULL BLEED -->
+  <div class="proj-fullbleed">
+    <img src="../assets/images/23.jpeg" alt="Trust Me being worn outdoors">
+  </div>
+
+  <!-- CALLOUT END -->
+  <div class="proj-callout callout-black">
+    <div class="proj-callout-line"></div>
+    <p class="proj-callout-text" data-en="Design that asks<br>uncomfortable questions." data-it="Design che pone<br>domande scomode.">Design that asks<br>uncomfortable questions.</p>
+  </div>
+
+  <!-- STATS -->
+  <div class="proj-stats on-black">
+    <div class="proj-stat">
+      <div class="proj-stat-num">8</div>
+      <div class="proj-stat-label" data-en="Hardware components" data-it="Componenti hardware">Hardware components</div>
+    </div>
+    <div class="proj-stat">
+      <div class="proj-stat-num">ESP32</div>
+      <div class="proj-stat-label" data-en="Core processor" data-it="Processore centrale">Core processor</div>
+    </div>
+    <div class="proj-stat">
+      <div class="proj-stat-num">?%</div>
+      <div class="proj-stat-label" data-en="Trust in algorithms" data-it="Fiducia negli algoritmi">Trust in algorithms</div>
+    </div>
+  </div>
+
+  <!-- TAGS -->
+  <div class="proj-tags on-black" style="padding-top:48px">
+    <span class="proj-tag">Speculative Design</span>
+    <span class="proj-tag">ESP32</span>
+    <span class="proj-tag">Wearable</span>
+    <span class="proj-tag">AI Ethics</span>
+    <span class="proj-tag">3D Print</span>
+    <span class="proj-tag">Personal Project</span>
+  </div>
+
+  <!-- PROJECT NAV -->
+  <div class="project-nav">
+    <a class="proj-nav-link" href="blooming-wire.html">
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+        <path d="M14 8H2M2 8L8 2M2 8L8 14" stroke="currentColor" stroke-width="1.2"/>
+      </svg>
+      <span>
+        <span class="proj-nav-label" data-en="Previous" data-it="Precedente">Previous</span>
+        03. Blooming Wire
+      </span>
+    </a>
+    <a class="proj-nav-link" href="../index.html">
+      <span>
+        <span class="proj-nav-label" data-en="Back to Home" data-it="Torna alla Home">Back to Home</span>
+        All Projects
+      </span>
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+        <path d="M2 8H14M14 8L8 2M14 8L8 14" stroke="currentColor" stroke-width="1.2"/>
+      </svg>
+    </a>
+  </div>
+
+  <footer>
+    <p>© 2026 Lorenzo Paulato</p>
+    <p data-en="Helping Through Shape" data-it="Aiutare attraverso la Forma">Helping Through Shape</p>
+    <a href="mailto:paulato.lorenzo@gmail.com">paulato.lorenzo@gmail.com</a>
+  </footer>
+
+  <script>
+    const cur=document.getElementById('cursor');const ring=document.getElementById('cursorRing');let mx=0,my=0,rx=0,ry=0;document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;});function animCursor(){cur.style.left=mx+'px';cur.style.top=my+'px';rx+=(mx-rx)*.12;ry+=(my-ry)*.12;ring.style.left=rx+'px';ring.style.top=ry+'px';requestAnimationFrame(animCursor);}animCursor();document.querySelectorAll('a,button').forEach(el=>{el.addEventListener('mouseenter',()=>{cur.style.width='20px';cur.style.height='20px';});el.addEventListener('mouseleave',()=>{cur.style.width='10px';cur.style.height='10px';});});
+    function revealProduct(){const h=document.getElementById('heroRight');h.classList.toggle('revealed');const btn=document.getElementById('revealBtn');const rev=h.classList.contains('revealed');const l=document.querySelector('.lang-btn.active').textContent.toLowerCase();btn.textContent=rev?(l==='en'?'Show Wireframe':'Mostra Wireframe'):(l==='en'?'Reveal Product':'Mostra Prodotto');}
+    let lang='en';function setLang(l){lang=l;document.querySelectorAll('[data-en]').forEach(el=>{const t=el.getAttribute('data-'+l);if(t)el.innerHTML=t;});document.querySelectorAll('.lang-btn').forEach(b=>b.classList.remove('active'));document.querySelector('.lang-btn:'+(l==='en'?'first':'last')+'-child').classList.add('active');}
+    const obs=new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting){e.target.style.opacity='1';e.target.style.transform='translateY(0)'}}),{threshold:.1});document.querySelectorAll('.proj-section,.proj-callout,.proj-stat,.proj-two-col,.proj-fullbleed,.sec-detail,.components-section').forEach(el=>{el.style.opacity='0';el.style.transform='translateY(24px)';el.style.transition='opacity .7s var(--ease),transform .7s var(--ease)';obs.observe(el);});
+  </script>
+</body>
+</html>

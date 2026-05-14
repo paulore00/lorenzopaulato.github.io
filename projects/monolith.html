@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>02. Monolith — Lorenzo Paulato</title>
+  <link rel="stylesheet" href="../style.css">
+  <link rel="stylesheet" href="../project.css">
+  <style>
+    body { background: var(--white); color: var(--black); }
+
+    /* Nav on white bg */
+    nav { mix-blend-mode: normal; }
+    .nav-logo, .nav-links a, .lang-btn { color: var(--black) !important; }
+    .lang-btn.active { color: var(--black) !important; }
+    .back-btn { color: rgba(0,0,0,.4); }
+    .back-btn:hover { color: var(--black); }
+
+    .proj-hero { background: var(--white); }
+    .proj-title, .proj-subtitle, .proj-meta-val { color: var(--black); }
+    .proj-index { color: var(--black); }
+    .proj-section-label { color: var(--red); }
+    .proj-wireframe-wrap img { filter: none; opacity: .8; }
+
+    /* sections */
+    .sec-white { background: var(--white); color: var(--black); }
+    .sec-black { background: var(--black); color: var(--white); }
+    .sec-black .proj-section-label { color: var(--red); }
+
+    .callout-black { background: var(--black); color: var(--white); }
+    .callout-black .proj-callout-line { background: var(--red); }
+    .callout-white { background: var(--white); color: var(--black); }
+    .callout-white .proj-callout-line { background: var(--red); }
+
+    .sec-detail { display: grid; grid-template-columns: 1fr 1fr; gap: 0; }
+    .sec-detail-text { padding: 80px 48px; display: flex; flex-direction: column; justify-content: center; }
+    .sec-detail-img { overflow: hidden; }
+    .sec-detail-img img { width:100%; height:100%; object-fit:cover; display:block; }
+
+    .proj-stats.on-white { background: var(--white); }
+    .proj-stats.on-white .proj-stat { border-color: rgba(0,0,0,.08); }
+    .proj-stats.on-white .proj-stat-label { color: rgba(0,0,0,.4); }
+
+    .proj-tags.on-white .proj-tag { color: var(--black); }
+
+    footer { color: var(--black); border-top-color: rgba(0,0,0,.1) !important; }
+    footer p, footer a { color: rgba(0,0,0,.35) !important; }
+    footer a:hover { color: var(--red) !important; }
+
+    .project-nav { border-top-color: rgba(0,0,0,.08); }
+    .proj-nav-link { color: rgba(0,0,0,.4); }
+    .proj-nav-link:hover { color: var(--black); }
+
+    /* Scrollbar */
+    ::-webkit-scrollbar-track { background: var(--white); }
+
+    @media (max-width: 900px) {
+      .sec-detail { grid-template-columns: 1fr; }
+      .sec-detail-img { aspect-ratio: 4/3; }
+      .sec-detail-text { padding: 40px 24px; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="cursor" id="cursor"></div>
+  <div class="cursor-ring" id="cursorRing"></div>
+
+  <nav>
+    <a class="nav-logo" href="../index.html">LP</a>
+    <div class="nav-right">
+      <ul class="nav-links">
+        <li><a href="../index.html#projects" data-en="Work" data-it="Lavori">Work</a></li>
+        <li><a href="../index.html#about" data-en="About" data-it="Info">About</a></li>
+        <li><a href="mailto:paulato.lorenzo@gmail.com" data-en="Contact" data-it="Contatti">Contact</a></li>
+      </ul>
+      <div class="lang-toggle">
+        <button class="lang-btn active" onclick="setLang('en')">EN</button>
+        <button class="lang-btn" onclick="setLang('it')">IT</button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="proj-hero">
+    <div class="proj-hero-left">
+      <div class="proj-index" aria-hidden="true">02</div>
+      <div class="proj-back-wrap">
+        <a class="back-btn" href="../index.html" style="color:rgba(0,0,0,.4)">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+            <path d="M14 8H2M2 8L8 2M2 8L8 14" stroke="currentColor" stroke-width="1.2"/>
+          </svg>
+          <span data-en="All Projects" data-it="Tutti i Progetti">All Projects</span>
+        </a>
+      </div>
+      <span style="color:var(--red);font-family:var(--font-display);font-size:11px;letter-spacing:.18em;text-transform:uppercase;margin-bottom:12px;display:block">02 —</span>
+      <h1 class="proj-title">Monolith</h1>
+      <p class="proj-subtitle" data-en="Speaker" data-it="Speaker">Speaker</p>
+      <div class="proj-meta">
+        <div class="proj-meta-row">
+          <span class="proj-meta-label" data-en="Type" data-it="Tipo">Type</span>
+          <span class="proj-meta-val" data-en="Personal Project" data-it="Progetto Personale">Personal Project</span>
+        </div>
+        <div class="proj-meta-row">
+          <span class="proj-meta-label" data-en="My Role" data-it="Il Mio Ruolo">My Role</span>
+          <span class="proj-meta-val" data-en="Concept Dev., 3D Modeling, Rendering" data-it="Sviluppo Concept, Modellazione 3D, Rendering">Concept Dev., 3D Modeling, Rendering</span>
+        </div>
+        <div class="proj-meta-row">
+          <span class="proj-meta-label" data-en="Year" data-it="Anno">Year</span>
+          <span class="proj-meta-val">2025</span>
+        </div>
+      </div>
+    </div>
+    <div class="proj-hero-right" id="heroRight">
+      <div class="proj-wireframe-wrap">
+        <img src="../assets/images/9.jpeg" alt="Monolith wireframe">
+      </div>
+      <div class="proj-photo-wrap">
+        <img src="../assets/images/14.jpeg" alt="Monolith speaker render">
+      </div>
+      <button class="reveal-btn" id="revealBtn" style="border-color:rgba(0,0,0,.2);color:rgba(0,0,0,.5)" data-en="Reveal Product" data-it="Mostra Prodotto" onclick="revealProduct()">Reveal Product</button>
+    </div>
+    <div class="proj-hero-line" style="background:rgba(0,0,0,1)"></div>
+  </section>
+
+  <!-- CONCEPT -->
+  <section class="proj-section sec-white">
+    <p class="proj-section-label" data-en="Concept" data-it="Concetto">Concept</p>
+    <p class="proj-body" data-en="Development of a speaker designed to blend naturally into <strong>contemporary spaces</strong>, through essential geometries and clean lines. Monolith embraces the idea that audio equipment can be as considered as any piece of furniture — present without imposing." data-it="Sviluppo di uno speaker progettato per integrarsi naturalmente negli <strong>spazi contemporanei</strong>, attraverso geometrie essenziali e linee pulite. Monolith abbraccia l'idea che l'elettronica audio possa essere considerata quanto qualsiasi pezzo di arredamento — presente senza imporsi.">
+      Development of a speaker designed to blend naturally into <strong>contemporary spaces</strong>, through essential geometries and clean lines. Monolith embraces the idea that audio equipment can be as considered as any piece of furniture — present without imposing.
+    </p>
+  </section>
+
+  <!-- SKETCHES -->
+  <div class="proj-fullbleed">
+    <img src="../assets/images/10.jpeg" alt="Monolith concept sketches">
+  </div>
+
+  <!-- CALLOUT -->
+  <div class="proj-callout callout-white">
+    <div class="proj-callout-line" style="background:var(--red)"></div>
+    <p class="proj-callout-text" data-en="Solid Presence.<br>Refined Sound." data-it="Presenza solida.<br>Suono raffinato.">Solid Presence.<br>Refined Sound.</p>
+  </div>
+
+  <!-- DETAIL -->
+  <div class="sec-detail">
+    <div class="sec-detail-img">
+      <img src="../assets/images/11.jpeg" alt="Monolith front view">
+    </div>
+    <div class="sec-detail-text sec-black">
+      <p class="proj-section-label" data-en="Form" data-it="Forma">Form</p>
+      <p class="proj-body" data-en="Three stacked volumes — each housing a driver. The tapering geometry grounds the object while the <strong>rounded edges</strong> soften its industrial character. A monolith that listens." data-it="Tre volumi impilati — ciascuno che ospita un driver. La geometria rastremata ancora l'oggetto mentre i <strong>bordi arrotondati</strong> ne ammorbidiscono il carattere industriale. Un monolite che ascolta.">
+        Three stacked volumes — each housing a driver. The tapering geometry grounds the object while the <strong>rounded edges</strong> soften its industrial character. A monolith that listens.
+      </p>
+    </div>
+  </div>
+
+  <!-- RENDERS -->
+  <div class="proj-two-col">
+    <img src="../assets/images/12.jpeg" alt="Monolith side render">
+    <img src="../assets/images/13.jpeg" alt="Monolith detail render">
+  </div>
+
+  <!-- STATS -->
+  <div class="proj-stats on-white">
+    <div class="proj-stat">
+      <div class="proj-stat-num">3</div>
+      <div class="proj-stat-label" data-en="Speaker drivers" data-it="Driver audio">Speaker drivers</div>
+    </div>
+    <div class="proj-stat">
+      <div class="proj-stat-num">ABS</div>
+      <div class="proj-stat-label" data-en="Material" data-it="Materiale">Material</div>
+    </div>
+    <div class="proj-stat">
+      <div class="proj-stat-num">360°</div>
+      <div class="proj-stat-label" data-en="Sound dispersion" data-it="Dispersione sonora">Sound dispersion</div>
+    </div>
+  </div>
+
+  <!-- TAGS -->
+  <div class="proj-tags on-white" style="padding-top:48px">
+    <span class="proj-tag">Speaker</span>
+    <span class="proj-tag">Personal Project</span>
+    <span class="proj-tag">3D Modeling</span>
+    <span class="proj-tag">Blender</span>
+    <span class="proj-tag">Product Design</span>
+  </div>
+
+  <!-- PROJECT NAV -->
+  <div class="project-nav" style="border-top-color:rgba(0,0,0,.08)">
+    <a class="proj-nav-link" href="nisus.html" style="color:rgba(0,0,0,.4)">
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+        <path d="M14 8H2M2 8L8 2M2 8L8 14" stroke="currentColor" stroke-width="1.2"/>
+      </svg>
+      <span>
+        <span class="proj-nav-label" data-en="Previous" data-it="Precedente">Previous</span>
+        01. Nisus
+      </span>
+    </a>
+    <a class="proj-nav-link" href="blooming-wire.html" style="color:rgba(0,0,0,.4)">
+      <span>
+        <span class="proj-nav-label" data-en="Next Project" data-it="Progetto Successivo">Next Project</span>
+        03. Blooming Wire
+      </span>
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+        <path d="M2 8H14M14 8L8 2M14 8L8 14" stroke="currentColor" stroke-width="1.2"/>
+      </svg>
+    </a>
+  </div>
+
+  <footer style="border-top-color:rgba(0,0,0,.08)">
+    <p>© 2026 Lorenzo Paulato</p>
+    <p data-en="Helping Through Shape" data-it="Aiutare attraverso la Forma">Helping Through Shape</p>
+    <a href="mailto:paulato.lorenzo@gmail.com">paulato.lorenzo@gmail.com</a>
+  </footer>
+
+  <script>
+    const cur=document.getElementById('cursor');const ring=document.getElementById('cursorRing');let mx=0,my=0,rx=0,ry=0;document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;});function animCursor(){cur.style.left=mx+'px';cur.style.top=my+'px';rx+=(mx-rx)*.12;ry+=(my-ry)*.12;ring.style.left=rx+'px';ring.style.top=ry+'px';requestAnimationFrame(animCursor);}animCursor();document.querySelectorAll('a,button').forEach(el=>{el.addEventListener('mouseenter',()=>{cur.style.width='20px';cur.style.height='20px';});el.addEventListener('mouseleave',()=>{cur.style.width='10px';cur.style.height='10px';});});
+    function revealProduct(){const h=document.getElementById('heroRight');h.classList.toggle('revealed');const btn=document.getElementById('revealBtn');const rev=h.classList.contains('revealed');const l=document.querySelector('.lang-btn.active').textContent.toLowerCase();btn.textContent=rev?(l==='en'?'Show Wireframe':'Mostra Wireframe'):(l==='en'?'Reveal Product':'Mostra Prodotto');}
+    let lang='en';function setLang(l){lang=l;document.querySelectorAll('[data-en]').forEach(el=>{const t=el.getAttribute('data-'+l);if(t)el.innerHTML=t;});document.querySelectorAll('.lang-btn').forEach(b=>b.classList.remove('active'));document.querySelector('.lang-btn:'+(l==='en'?'first':'last')+'-child').classList.add('active');}
+    const obs=new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting){e.target.style.opacity='1';e.target.style.transform='translateY(0)'}}),{threshold:.1});document.querySelectorAll('.proj-section,.proj-callout,.proj-stat,.proj-two-col,.proj-fullbleed,.sec-detail').forEach(el=>{el.style.opacity='0';el.style.transform='translateY(24px)';el.style.transition='opacity .7s var(--ease),transform .7s var(--ease)';obs.observe(el);});
+  </script>
+</body>
+</html>
